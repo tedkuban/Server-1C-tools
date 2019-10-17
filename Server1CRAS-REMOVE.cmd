@@ -1,0 +1,5 @@
+@Echo OFF
+IF EXIST Server1C-SETTINGS.CMD CALL Server1C-SETTINGS.CMD %1
+net stop %RASSERVICENAME%
+timeout 10
+sc delete %RASSERVICENAME%
