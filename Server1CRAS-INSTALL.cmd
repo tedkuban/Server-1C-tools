@@ -17,5 +17,7 @@ rem sc stop %SrvcName%
 rem sc delete %SrvcName%
 rem sc create %SrvcName% binPath= %BinPath% start= auto obj= %SrvUserName% password= %SrvUserPwd% displayname= %Desctiption%
 sc create %RASSERVICENAME% binpath= "\"%ProgramFiles%\1cv8\current\bin\ras.exe\" --service --port=%PORTPREFIX%45 cluster localhost:%PORTPREFIX%40" displayname= %RASSERVICEDESCR% start= auto obj= %SERVERLOGIN% password= %SERVERPASSWORD%
+sc config %RASSERVICENAME% depend= %SERVICENAME%
+sc failure %RASSERVICENAME% reset= INFINITE actions= restart/10000
 net start %RASSERVICENAME%
 sc query %RASSERVICENAME%
