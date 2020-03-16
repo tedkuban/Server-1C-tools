@@ -4,9 +4,9 @@ IF #%NEWVERSION%# == ## Echo Platform version not defined, exiting...
 IF #%NEWVERSION%# == ## exit
 IF #%PORTPREFIX%# == ## Echo Port prefix not defined, exiting...
 IF #%PORTPREFIX%# == ## exit
-IF NOT EXIST %SERVERDIR% GoTo CreateDir
-Echo Cannot install new server instance in existing directory!
-Exit
+REM IF NOT EXIST %SERVERDIR% GoTo CreateDir
+REM Echo Cannot install new server instance in existing directory!
+REM Exit
 :CreateDir
 ECHO Installing server version %NEWVERSION% with port %PORTPREFIX%40 to %SERVERDIR% directory
 MD %SERVERDIR%
