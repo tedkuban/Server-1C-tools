@@ -9,3 +9,4 @@ rem sc delete "1C:Enterprise 8.3 Server Agent (x86-64)"
 net stop %SERVICENAME%
 timeout 10
 sc delete %SERVICENAME%
+rmdir "%PROGRAMDIR%\1cv8\current"

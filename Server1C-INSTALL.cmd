@@ -11,10 +11,10 @@ REM Exit
 ECHO Installing server version %NEWVERSION% with port %PORTPREFIX%40 to %SERVERDIR% directory
 MD %SERVERDIR%
 icacls %SERVERDIR% /grant %SERVERLOGIN%:(OI)(CI)(M) /inheritance:e
-IF NOT EXIST "%ProgramFiles%"\1cv8\current mklink /J "%ProgramFiles%"\1cv8\current "%ProgramFiles%"\1cv8\%NEWVERSION%
-rem "%ProgramFiles%"\1cv8\current\bin\ragent.exe -instsrvc -d %SERVERDIR% -debug -usr %SERVERLOGIN% -pwd %SERVERPASSWORD%
-mklink /J "%ProgramFiles%"\1cv8\current "%ProgramFiles%"\1cv8\%NEWVERSION%
-sc create %SERVICENAME% binPath= "\"%ProgramFiles%\1cv8\current\bin\ragent.exe\" -d %SERVERDIR:"=\"% -debug -srvc -agent -port %PORTPREFIX%40 -regport %PORTPREFIX%41 -range %PORTPREFIX%60:%PORTPREFIX%91"
+rmdir "%PROGRAMDIR%\1cv8\current"
+mklink /J "%PROGRAMDIR%\1cv8\current" "%PROGRAMDIR%\1cv8\%NEWVERSION%"
+rem "%PROGRAMDIR%"\1cv8\current\bin\ragent.exe -instsrvc -d %SERVERDIR% -debug -usr %SERVERLOGIN% -pwd %SERVERPASSWORD%
+sc create %SERVICENAME% binPath= "\"%PROGRAMDIR%\1cv8\current\bin\ragent.exe\" -d %SERVERDIR:"=\"% -debug -srvc -agent -port %PORTPREFIX%40 -regport %PORTPREFIX%41 -range %PORTPREFIX%60:%PORTPREFIX%91"
 sc config %SERVICENAME% DisplayName= %SERVICEDESCR% Start= auto depend= "Tcpip/Dnscache/lanmanworkstation/lanmanserver"
 sc config %SERVICENAME% obj= %SERVERLOGIN% password= %SERVERPASSWORD%
 sc description %SERVICENAME% %SERVICEDESCR%

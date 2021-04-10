@@ -8,9 +8,9 @@ REM sc stop "1C:Enterprise 8.3 Server Agent (x86-64)"
 REM sc query "1C:Enterprise 8.3 Server Agent (x86-64)"
 net stop %RASSERVICENAME%
 net stop %SERVICENAME%
-rmdir "%ProgramFiles%\1cv8\current"
-mklink /J "%ProgramFiles%"\1cv8\current "%ProgramFiles%"\1cv8\%NEWVERSION%
-PUSHD "%ProgramFiles%\1cv8\current\bin"
+rmdir "%PROGRAMDIR%\1cv8\current"
+mklink /J "%PROGRAMDIR%\1cv8\current" "%PROGRAMDIR%\1cv8\%NEWVERSION%"
+PUSHD "%PROGRAMDIR%\1cv8\current\bin"
 start /w cmd.exe /K RegMSC.cmd
 regsvr32 -i comcntr.dll
 POPD
