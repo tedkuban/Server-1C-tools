@@ -17,7 +17,7 @@ REM SET SERVERDIR="%PROGRAMDIR%\1cv8\srvinfo"
             REM SET SERVERLOGIN=".\srv1cv8" Don't use dot for local computer account!
             REM SET SERVERLOGIN="%COMPUTERNAME%\srv1cv8" Use computer name with username
 SET SERVERLOGIN="%USERDOMAIN%\srv1cv8"
-REM Put password in any file then type filename in ctring below
+REM Put password in any file then type filename in string below
 @FOR /F %%i in (C:\admin\server1c.txt) do SET SERVERPASSWORD="%%i"
 IF #%SERVERPASSWORD%# == ## SET SERVERPASSWORD="password"
 
