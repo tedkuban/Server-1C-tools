@@ -1,5 +1,5 @@
 rem @echo off
-SET NEWVERSION=8.3.16.1148
+SET NEWVERSION=8.3.19.1264
 SET PORTPREFIX=15
 REM SET INSTALLARCH=x86
 SET INSTALLARCH=x64
@@ -16,9 +16,9 @@ REM SET SERVERDIR="%PROGRAMDIR%\1cv8\srvinfo"
 
             REM SET SERVERLOGIN=".\srv1cv8" Don't use dot for local computer account!
             REM SET SERVERLOGIN="%COMPUTERNAME%\srv1cv8" Use computer name with username
-SET SERVERLOGIN="%USERDOMAIN%\srv1cv8"
+SET SERVERLOGIN="%USERDOMAIN%\server1c"
 REM Put password in any file then type filename in string below
-@FOR /F %%i in (C:\admin\server1c.txt) do SET SERVERPASSWORD="%%i"
+@FOR /F "usebackq" %%i in ("\\%USERDOMAIN%\NETLOGON\sysadmin\server1c.txt") do SET SERVERPASSWORD="%%i"
 IF #%SERVERPASSWORD%# == ## SET SERVERPASSWORD="password"
 
 SET SERVICENAME="1C:Enterprise 8.3 Server Agent%NAMESUFFIX% %PORTPREFIX%40"
