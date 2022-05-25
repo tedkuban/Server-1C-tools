@@ -13,6 +13,10 @@ MD %SERVERDIR%
 icacls %SERVERDIR% /grant %SERVERLOGIN%:(OI)(CI)(M) /inheritance:e
 rmdir "%PROGRAMDIR%\1cv8\current"
 mklink /J "%PROGRAMDIR%\1cv8\current" "%PROGRAMDIR%\1cv8\%NEWVERSION%"
+PUSHD "%PROGRAMDIR%\1cv8\current\bin"
+start /w cmd.exe /K RegMSC.cmd
+regsvr32 -i comcntr.dll
+POPD
 rem "%PROGRAMDIR%"\1cv8\current\bin\ragent.exe -instsrvc -d %SERVERDIR% -debug -usr %SERVERLOGIN% -pwd %SERVERPASSWORD%
 sc create %SERVICENAME% binPath= "\"%PROGRAMDIR%\1cv8\current\bin\ragent.exe\" -d %SERVERDIR:"=\"% -debug -srvc -agent -port %PORTPREFIX%40 -regport %PORTPREFIX%41 -range %PORTPREFIX%60:%PORTPREFIX%91"
 sc config %SERVICENAME% DisplayName= %SERVICEDESCR% Start= auto depend= "Tcpip/Dnscache/lanmanworkstation/lanmanserver"

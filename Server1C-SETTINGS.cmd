@@ -13,8 +13,8 @@ REM Put password in any file then type filename in string below
 @FOR /F "usebackq" %%i in ("\\%USERDOMAIN%\NETLOGON\sysadmin\server1c.txt") do SET SERVERPASSWORD="%%i"
 REM Put password here if the secret password file is not used
 IF #%SERVERPASSWORD%# == ## SET SERVERPASSWORD="password"
-REM SET ALWAYS_USE_PORT_PREFIX="false"
-SET ALWAYS_USE_PORT_PREFIX="true"
+SET ALWAYS_USE_PORT_PREFIX="false"
+REM SET ALWAYS_USE_PORT_PREFIX="true"
 
 REM Edit only settings above !
 
